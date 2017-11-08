@@ -1,0 +1,27 @@
+{
+    // Place your settings in this file to overwrite default and user settings.
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+
+        "dist": true,
+        "node_modules": true,
+
+        "LICENSE": true,
+        "package-lock.json": true
+    },
+
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+
+    "typescript.format.enable": false,
+    "json.format.enable": false,
+    "html.format.enable": false,
+    "javascript.format.enable": false,
+
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

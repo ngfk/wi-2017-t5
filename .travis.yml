@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - node
+
+install:
+  - npm install
+
+scripts:
+  - npm run build
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
