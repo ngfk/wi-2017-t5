@@ -6,11 +6,11 @@ const api = new ConversationV1({
     version_date: '2017-05-26'
 });
 
-export type ConversationPayload = {
+interface ConversationPayload {
     input?: { text?: string };
     context?: any;
     workspace_id?: any;
-};
+}
 
 export class Conversation {
     private context: any;
@@ -22,7 +22,7 @@ export class Conversation {
         return data.output.text;
     }
 
-    private request(payload: ConversationPayload = {}): Promise<any> {
+    private request<T = any>(payload: ConversationPayload = {}): Promise<T> {
         payload = {
             context: this.context,
             workspace_id: this.workspace,
