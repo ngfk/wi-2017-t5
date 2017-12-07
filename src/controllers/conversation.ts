@@ -12,4 +12,4 @@ router.post('/message', async (req, res) => {
     res.json({ text: response });
 });
 
-export default router;
+export const routerConversation = router;

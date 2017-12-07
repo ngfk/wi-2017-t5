@@ -2,8 +2,8 @@ import { getAppEnv } from 'cfenv';
 import * as express from 'express';
 import { join } from 'path';
 
-import convervation from './controllers/conversation';
-import visual from './controllers/visual';
+import { routerConversation } from './controllers/conversation';
+import { routerVisual } from './controllers/visual';
 import { middlewareCors } from './middleware/cors';
 import { middlewareJwt } from './middleware/jwt';
 import { middlewareForm, middlewareJson } from './middleware/parsing';
@@ -18,8 +18,8 @@ app.use(middlewareCors);
 app.use(middlewareJwt);
 
 app.use('/public', express.static(join(__dirname, '../public')));
-app.use('/api/conversation', convervation);
-app.use('/api/visual', visual);
+app.use('/api/conversation', routerConversation);
+app.use('/api/visual', routerVisual);
 
 app.get('/', (req, res) => {
     res.redirect('/public');
