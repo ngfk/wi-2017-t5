@@ -7,6 +7,8 @@ const router: express.Router = express.Router();
 router.post('/', (req, res) => {
     const { deviceId } = req.body;
     const userToken = UserToken.create(deviceId);
+
+    console.log(`[login] new user ${userToken.id}; device: ${deviceId}`);
     res.end(userToken.getToken());
 });
 
