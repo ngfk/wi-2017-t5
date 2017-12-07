@@ -7,6 +7,7 @@ import visual from './controllers/visual';
 import { middlewareCors } from './middleware/cors';
 import { middlewareJwt } from './middleware/jwt';
 import { middlewareForm, middlewareJson } from './middleware/parsing';
+import { UserToken } from './models/user-token';
 
 const app = express();
 const appEnv = getAppEnv();
@@ -27,4 +28,5 @@ app.get('/', (req, res) => {
 
 app.listen(appEnv.port, '0.0.0.0', () => {
     console.log('server started on ' + appEnv.url);
+    console.log('DEBUG TOKEN: ' + UserToken.create('debug').getToken());
 });
