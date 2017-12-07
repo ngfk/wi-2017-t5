@@ -1,8 +1,7 @@
-import * as watson from 'watson-developer-cloud';
+import { VisualRecognitionV3 } from 'watson-developer-cloud';
 
-const api = watson.visual_recognition({
+const api = new VisualRecognitionV3({
     api_key: 'ff0e720cf4b833cb6f59c16587a36c847acb1403',
-    version: 'v3',
     version_date: '2016-05-20'
 });
 
