@@ -17,7 +17,17 @@ export class NaturalLanguageUnderstanding {
         this.parameters = requestParams;
     }
 
-    public async analyse(payload: any): Promise<any> {
+    public async analyze(analyzeData: string): Promise<AnalysisResults> {
+        const payload: AnalyzeParams = {
+            text: analyzeData,
+            features: {
+                emotion: {
+                    targets: ['party', 'museum', 'monument']
+                },
+                keywords: { emotion: true, sentiment: true },
+                categories: {}
+            }
+        };
         const data = await this.request(payload);
         return data;
     }
@@ -27,6 +37,7 @@ export class NaturalLanguageUnderstanding {
             api.analyze(payload, (err, data) => {
                 if (err) {
                     reject(err);
+                    return;
                 }
                 resolve(data);
             });
