@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import { getAppEnv } from 'cfenv';
 import * as cors from 'cors';
 import * as express from 'express';
+import * as multer from 'multer';
 import { join } from 'path';
 
 import convervation from './controllers/conversation';
@@ -12,6 +13,7 @@ const appEnv = getAppEnv();
 
 app.use('/public', express.static(join(__dirname, '../public')));
 app.use(bodyParser.json());
+app.use(multer({ storage: multer.memoryStorage() }).any());
 app.use(
     cors({
         origin: [

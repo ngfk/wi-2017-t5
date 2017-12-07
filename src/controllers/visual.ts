@@ -1,7 +1,5 @@
-import * as fs from 'fs';
-import * as watson from 'watson-developer-cloud';
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import * as watson from 'watson-developer-cloud';
 
 const router: express.Router = express.Router();
 
@@ -11,8 +9,8 @@ var visual_recognition = watson.visual_recognition({
     version_date: '2016-05-20'
 });
 
-router.post('/test', bodyParser.urlencoded({ extended: true }), (req, res) => {
-    console.log(req.body.name);
+router.post('/test', (req, res) => {
+    console.log(req.files);
     res.json({});
 
     // visual_recognition.classify(params, function(err: any, res: any) {
