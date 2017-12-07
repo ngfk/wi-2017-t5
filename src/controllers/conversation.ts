@@ -1,15 +1,33 @@
 import * as express from 'express';
 
+import { UserToken } from '../models/user-token';
 import { Conversation } from '../watson/conversation';
 
 const router: express.Router = express.Router();
 
-const conversation = new Conversation();
+const conversations: { [id: string]: Conversation } = {};
 
 router.post('/message', async (req, res) => {
-    const token = req.get('Authorization');
-    const response = await conversation.message(req.body.text || '', token);
-    res.json({ text: response });
+    try {
+        // Extract authorization token
+        const token = req.get('Authorization')!.slice('Bearer '.length);
+        const userToken = UserToken.fromToken(token);
+
+        // Retrieve or create conversation instance
+        if (!conversations[userToken.id])
+            conversations[userToken.id] = new Conversation();
+        const conversation = conversations[userToken.id];
+
+        // Forward message to conversation
+        const { text } = req.body;
+        const response = await conversation.message(text);
+
+        // Return response
+        res.json({ text: response });
+    } catch (e) {
+        console.log(e.message);
+        res.end();
+    }
 });
 
 export const routerConversation = router;
