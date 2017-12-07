@@ -1,5 +1,5 @@
 import * as bodyParser from 'body-parser';
-import { RequestHandler } from 'express-serve-static-core';
+import { RequestHandler } from 'express-unless';
 import * as multer from 'multer';
 
 export const middlewareJson: RequestHandler = bodyParser.json();
