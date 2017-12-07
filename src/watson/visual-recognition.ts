@@ -5,18 +5,22 @@ const api = new VisualRecognitionV3({
     version_date: '2016-05-20'
 });
 
-interface VisualRecognitionPayload {
+interface ClassifyParams {
     images_file: Buffer;
 }
 
+export interface ClassifyResult {
+    // TODO...
+}
+
 export class VisualRecognition {
-    public async classify(file: Buffer): Promise<any> {
+    public async classify(file: Buffer): Promise<ClassifyResult> {
         return this.request({ images_file: file });
     }
 
-    private request<T = any>(payload: VisualRecognitionPayload): Promise<T> {
+    private request(payload: ClassifyParams): Promise<ClassifyResult> {
         return new Promise<any>((resolve, reject) => {
-            api.classify(payload, (err: any, data: any) => {
+            api.classify(payload, (err, data) => {
                 if (err) {
                     reject(err);
                     return;
