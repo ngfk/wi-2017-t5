@@ -5,6 +5,7 @@ import * as express from 'express';
 import { join } from 'path';
 
 import convervation from './controllers/conversation';
+import visual from './controllers/visual';
 
 const app = express();
 const appEnv = getAppEnv();
@@ -22,6 +23,7 @@ app.use(
 );
 
 app.use('/api/conversation', convervation);
+app.use('/api/visual', visual);
 
 app.get('/', (req, res) => {
     res.redirect('/public');
