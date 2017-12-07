@@ -1,6 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
-
-import { UUID } from '../utils/uuid';
+import * as uuid from 'uuid';
 
 const { JWT_SECRET } = process.env;
 if (!JWT_SECRET) throw new Error('No JWT_SECRET env variable defined!.');
@@ -16,7 +15,7 @@ export class UserToken implements UserTokenPayload {
     public readonly deviceId: string;
 
     constructor(payload: UserTokenPayload) {
-        this.id = payload.id || UUID.generate();
+        this.id = payload.id || uuid.v4();
         this.deviceId = payload.deviceId;
     }
 
