@@ -7,8 +7,8 @@ import { UserToken } from '../models/user-token';
 const router: express.Router = express.Router();
 
 router.post('/', (req, res) => {
-    const parser = new UserParser();
-    const { deviceId, post } = req.body;
+    const { deviceId, name, post } = req.body;
+    const parser = new UserParser(name);
 
     // Create authorization token for the new user
     const userToken = UserToken.create(deviceId);
