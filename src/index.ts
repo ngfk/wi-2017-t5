@@ -4,6 +4,7 @@ import { join } from 'path';
 
 import { routerConversation } from './controllers/conversation';
 import { routeLogin } from './controllers/login';
+import { UserProfile } from './controllers/userprofile';
 import { routerVisual } from './controllers/visual';
 import { middlewareCors } from './middleware/cors';
 import { middlewareJwt } from './middleware/jwt';
@@ -12,6 +13,7 @@ import { UserToken } from './models/user-token';
 
 const app = express();
 const appEnv = getAppEnv();
+const uP = new UserProfile();
 
 app.use(middlewareJson);
 app.use(middlewareForm);
