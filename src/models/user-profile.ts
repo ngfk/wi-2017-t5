@@ -1,6 +1,6 @@
 export interface UserProfile {
-    Name: string;
-    Preferences: Preferences[];
+    name: string;
+    preferences: Preferences[];
 }
 
 export interface Preferences {

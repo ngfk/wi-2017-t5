@@ -1,7 +1,7 @@
-import { CityProfile } from './cityprofile';
-import { UserProfile } from './userprofile';
+import { CityProfile } from './city-profile';
+import { UserProfile } from './user-profile';
 
 export interface ProfileMatcher {
-    userprofile: UserProfile;
-    cityprofiles: CityProfile[];
+    userProfile: UserProfile;
+    cityProfiles: CityProfile[];
 }

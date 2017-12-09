@@ -1,6 +1,6 @@
 export interface CityProfile {
     name: string;
-    musea: Museum[];
+    museums: Museum[];
     monuments: Monument[];
     clubs: Club[];
     miscs: Misc[];
