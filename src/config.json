@@ -1,0 +1,14 @@
+{
+    "conversation": {
+        "username": "44a3a687-78fd-4e6e-ae3d-1e74a672857b",
+        "password": "wphyaeyEhNVL",
+        "workspace": "58b05904-964e-4f20-9d12-65eae67586c5"
+    },
+    "natural-language-understanding": {
+        "username": "9e2c4496-7279-4ea1-835b-9c7ff25a2fc6",
+        "password": "Rr6ZqPYZ4kwb"
+    },
+    "visual-recognition": {
+        "api_key": "ff0e720cf4b833cb6f59c16587a36c847acb1403"
+    }
+}

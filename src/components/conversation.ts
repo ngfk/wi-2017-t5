@@ -5,19 +5,28 @@ import {
     MessageResponse
 } from 'watson-developer-cloud/conversation/v1-generated';
 
-const api = new ConversationV1({
-    username: '44a3a687-78fd-4e6e-ae3d-1e74a672857b',
-    password: 'wphyaeyEhNVL',
-    version_date: '2017-05-26'
-});
+import { Config, ConfigType } from '../models/config';
 
 export class Conversation {
+    private static API: ConversationV1;
+    private static WORKSPACE: string;
     private context: Context;
-    private workspace = '58b05904-964e-4f20-9d12-65eae67586c5';
+
+    constructor() {
+        if (Conversation.API) return;
+
+        const config = Config.get(ConfigType.Conversation);
+        Conversation.API = new ConversationV1({
+            username: config.username,
+            password: config.password,
+            version_date: '2017-05-26'
+        });
+        Conversation.WORKSPACE = config.workspace;
+    }
 
     public async message(text?: string): Promise<string[]> {
         const data = await this.request({
-            workspace_id: this.workspace,
+            workspace_id: Conversation.WORKSPACE,
             context: this.context
         });
 
@@ -27,7 +36,7 @@ export class Conversation {
 
     private request(payload: MessageParams): Promise<MessageResponse> {
         return new Promise((resolve, reject) => {
-            api.message(payload, (err, data) => {
+            Conversation.API.message(payload, (err, data) => {
                 if (err) {
                     reject(err);
                     return;
