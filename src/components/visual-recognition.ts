@@ -14,7 +14,7 @@ export interface ClassifyResult {
 }
 
 export class VisualRecognition {
-    public async classify(file: Buffer): Promise<ClassifyResult> {
+    public classify(file: Buffer): Promise<ClassifyResult> {
         return this.request({ images_file: file });
     }
 

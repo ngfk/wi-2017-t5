@@ -11,7 +11,7 @@ const api = new NaturalLanguageUnderstandingV1({
 });
 
 export class NaturalLanguageUnderstanding {
-    public async analyze(analyzeData: string): Promise<AnalysisResults> {
+    public analyze(analyzeData: string): Promise<AnalysisResults> {
         const payload: AnalyzeParams = {
             text: analyzeData,
             features: {
@@ -19,8 +19,8 @@ export class NaturalLanguageUnderstanding {
                 categories: {}
             }
         };
-        const data = await this.request(payload);
-        return data;
+
+        return this.request(payload);
     }
 
     private request(payload: AnalyzeParams): Promise<AnalysisResults> {
