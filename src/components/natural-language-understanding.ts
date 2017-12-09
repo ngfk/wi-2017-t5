@@ -24,7 +24,7 @@ export class NaturalLanguageUnderstanding {
         const payload: AnalyzeParams = {
             text: analyzeData,
             features: {
-                keywords: { emotion: true, sentiment: true },
+                sentiment: {},
                 categories: {}
             }
         };
