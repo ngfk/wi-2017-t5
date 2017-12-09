@@ -1,14 +1,10 @@
 import { VisualRecognitionV3 } from 'watson-developer-cloud';
+import {
+    ClassifierResult,
+    ClassifyParams
+} from 'watson-developer-cloud/visual-recognition/v3-generated';
 
 import { Config, ConfigType } from '../models/config';
-
-interface ClassifyParams {
-    images_file: Buffer;
-}
-
-export interface ClassifyResult {
-    // TODO...
-}
 
 export class VisualRecognition {
     private static API: VisualRecognitionV3;
@@ -23,12 +19,12 @@ export class VisualRecognition {
         });
     }
 
-    public classify(file: Buffer): Promise<ClassifyResult> {
+    public classify(file: Buffer): Promise<ClassifierResult> {
         return this.request({ images_file: file });
     }
 
-    private request(payload: ClassifyParams): Promise<ClassifyResult> {
-        return new Promise<any>((resolve, reject) => {
+    private request(payload: ClassifyParams): Promise<ClassifierResult> {
+        return new Promise<ClassifierResult>((resolve, reject) => {
             VisualRecognition.API.classify(payload, (err, data) => {
                 if (err) {
                     reject(err);
