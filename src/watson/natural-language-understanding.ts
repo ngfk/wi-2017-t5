@@ -11,18 +11,15 @@ const api = new NaturalLanguageUnderstandingV1({
 });
 
 export class NaturalLanguageUnderstanding {
-    private parameters: any;
-
-    constructor(requestParams: any) {
-        this.parameters = requestParams;
-    }
-
-    public async analyze(analyzeData: string): Promise<AnalysisResults> {
+    public async analyze(
+        analyzeData: string,
+        targets?: string[]
+    ): Promise<AnalysisResults> {
         const payload: AnalyzeParams = {
             text: analyzeData,
             features: {
                 emotion: {
-                    targets: ['party', 'museum', 'monument']
+                    targets: targets === undefined ? [''] : targets
                 },
                 keywords: { emotion: true, sentiment: true },
                 categories: {}
