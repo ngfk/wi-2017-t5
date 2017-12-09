@@ -8,6 +8,7 @@ export class UserProfileBuilder {
             canal: 0,
             party: 0,
             flowers: 0,
+            food: 0,
             drugs: 0,
             architecture: 0,
             redLightDistrict: 0
@@ -44,6 +45,7 @@ export interface UserProfileScores {
     readonly canal: number;
     readonly party: number;
     readonly flowers: number;
+    readonly food: number;
     readonly drugs: number;
     readonly architecture: number;
     readonly redLightDistrict: number;
