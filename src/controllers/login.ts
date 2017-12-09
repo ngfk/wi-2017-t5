@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     }
 
     // Parse user images
-    for (let file of req.files) {
+    for (let file of req.files || []) {
         if (file.fieldname !== 'image') continue;
         parser.addImage(file.buffer);
     }
