@@ -11,6 +11,14 @@ export class UserParser {
     private profile: UserProfile;
     private promises: Promise<any>[] = [];
 
+    constructor(name: string) {
+        this.profile = new UserProfile({
+            name,
+            relevantPictureResponses: [],
+            relevantPostResponses: []
+        });
+    }
+
     public addPost(post: string): this {
         this.promises.push(this.parsePost(post));
         return this;
@@ -31,11 +39,16 @@ export class UserParser {
 
     private async parsePost(post: string): Promise<void> {
         const result = await UserParser.NLU.analyze(post);
-        // TODO: modify `this.profile` using new post result
+        this.profile.relevantPostResponses.push({
+            postResponse: result.keywords
+        });
     }
 
     private async parseImage(image: Buffer): Promise<void> {
         const result = await UserParser.VR.classify(image);
+        this.profile.relevantPictureResponses.push({
+            pictureResponse: result
+        });
         // TODO: modify `this.profile` using new image result
     }
 }
