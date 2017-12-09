@@ -28,7 +28,16 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-app.listen(appEnv.port, '0.0.0.0', () => {
+app.listen(appEnv.port, '0.0.0.0', async () => {
     console.log('server started on ' + appEnv.url);
     console.log('DEBUG TOKEN: ' + UserToken.create('debug').getToken());
+
+    // For testing purposes. You can create a `test.ts` file next to this
+    // `index.ts` and make sure it exports a main function. Doing it this way
+    // to allow ignoring the test.ts file from git.
+    try {
+        const p = './test';
+        const { main } = await import(p);
+        main();
+    } catch {}
 });
