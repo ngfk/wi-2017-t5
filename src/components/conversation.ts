@@ -1,5 +1,6 @@
 import { ConversationV1 } from 'watson-developer-cloud';
 import {
+    Context,
     MessageParams,
     MessageResponse
 } from 'watson-developer-cloud/conversation/v1-generated';
@@ -11,7 +12,7 @@ const api = new ConversationV1({
 });
 
 export class Conversation {
-    private context: any;
+    private context: Context;
     private workspace = '58b05904-964e-4f20-9d12-65eae67586c5';
 
     public async message(text?: string): Promise<string[]> {
