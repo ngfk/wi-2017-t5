@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { VisualRecognition } from '../watson/visual-recognition';
+import { VisualRecognition } from '../components/visual-recognition';
 
 const router: express.Router = express.Router();
 

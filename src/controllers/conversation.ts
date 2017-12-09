@@ -1,7 +1,7 @@
 import * as express from 'express';
 
+import { Conversation } from '../components/conversation';
 import { UserToken } from '../models/user-token';
-import { Conversation } from '../watson/conversation';
 
 const router: express.Router = express.Router();
 

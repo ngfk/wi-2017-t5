@@ -1,8 +1,6 @@
 import { UserProfile } from '../models/user-profile';
-import {
-    NaturalLanguageUnderstanding
-} from '../watson/natural-language-understanding';
-import { VisualRecognition } from '../watson/visual-recognition';
+import { NaturalLanguageUnderstanding } from './natural-language-understanding';
+import { VisualRecognition } from './visual-recognition';
 
 export class UserParser {
     private static NLU = new NaturalLanguageUnderstanding();
