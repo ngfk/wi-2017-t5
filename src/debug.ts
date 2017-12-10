@@ -44,9 +44,7 @@ export const main = async () => {
     conversation.setContext('enough_preferences', false);
 
     const start = await conversation.message();
-    console.log('[Watson]');
-    start.forEach(s => console.log(s));
-    console.log();
+    console.log('[%s]\n%s\n', 'Watson', start.join('\n'));
 
     while (true) {
         console.log(`[${user.name}]`);
@@ -54,9 +52,7 @@ export const main = async () => {
         console.log();
 
         const output = await conversation.message(input);
-        console.log(`[Watson]`);
-        output.forEach(o => console.log(o));
-        console.log();
+        console.log('[%s]\n%s\n', 'Watson', output.join('\n'));
     }
 };
 
