@@ -1,7 +1,7 @@
 import { createInterface } from 'readline';
 
 import { UserParser } from './components/user-parser';
-import { store } from './models/data-store';
+import { DataStore } from './models/data-store';
 import { UserToken } from './models/user-token';
 
 const rl = createInterface({
@@ -34,13 +34,13 @@ const setupUser = async () => {
         .addPost('The tickets for "the dubliners" came today :D')
         .parse();
 
-    store.setUserProfile(user, profile);
+    DataStore.setUserProfile(user, profile);
     return user;
 };
 
 export const main = async () => {
     const user = await setupUser();
-    const conversation = store.getConversation(user);
+    const conversation = DataStore.getConversation(user);
     conversation.setContext('enough_preferences', false);
 
     const start = await conversation.message();

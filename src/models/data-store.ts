@@ -7,31 +7,23 @@ import { UserProfile } from './user-profile';
 import { UserToken } from './user-token';
 
 export class DataStore {
-    private profiles = new Map<string, UserProfile>();
-    private conversations = new Map<string, Conversation>();
+    private static profiles = new Map<string, UserProfile>();
+    private static conversations = new Map<string, Conversation>();
 
-    private cities = new Map<City, CityProfile>();
+    private static cities = new Map<City, CityProfile>()
+        .set(City.DenHaag, denHaag)
+        .set(City.Leiden, leiden)
+        .set(City.Utrecht, utrecht);
 
-    constructor() {
-        // Load city profiles
-        this.cities.set(City.DenHaag, denHaag);
-        this.cities.set(City.Leiden, leiden);
-        this.cities.set(City.Utrecht, utrecht);
-    }
-
-    public getToken(token: string): UserToken {
-        return UserToken.fromToken(token);
-    }
-
-    public setUserProfile(token: UserToken, profile: UserProfile): void {
+    public static setUserProfile(token: UserToken, profile: UserProfile): void {
         this.profiles.set(token.id, profile);
     }
 
-    public getUserProfile(token: UserToken): UserProfile | undefined {
+    public static getUserProfile(token: UserToken): UserProfile | undefined {
         return this.profiles.get(token.id);
     }
 
-    public getConversation(user: UserToken): Conversation {
+    public static getConversation(user: UserToken): Conversation {
         const stored = this.conversations.get(user.id);
         if (stored) return stored;
 
@@ -40,13 +32,11 @@ export class DataStore {
         return conversation;
     }
 
-    public getCityProfile(city: City): CityProfile | undefined {
+    public static getCityProfile(city: City): CityProfile | undefined {
         return this.cities.get(city);
     }
 
-    public getCityProfiles(): CityProfile[] {
+    public static getCityProfiles(): CityProfile[] {
         return Array.from(this.cities.entries()).map(([_, value]) => value);
     }
 }
-
-export const store = new DataStore();

@@ -1,7 +1,7 @@
 import * as express from 'express';
 
 import { UserParser } from '../components/user-parser';
-import { store } from '../models/data-store';
+import { DataStore } from '../models/data-store';
 import { UserToken } from '../models/user-token';
 
 const router: express.Router = express.Router();
@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     // complete.
     parser.parse().then(userProfile => {
         console.log(`[login] user profile for ${userToken.id} complete`);
-        store.setUserProfile(userToken, userProfile);
+        DataStore.setUserProfile(userToken, userProfile);
     });
 
     // Return the JWT to the user

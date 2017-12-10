@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { store } from '../models/data-store';
+import { DataStore } from '../models/data-store';
 import { UserToken } from '../models/user-token';
 
 const router: express.Router = express.Router();
@@ -10,7 +10,7 @@ router.post('/message', async (req, res) => {
         // Extract authorization token & conversation instance
         const token = req.get('Authorization')!.slice('Bearer '.length);
         const userToken = UserToken.fromToken(token);
-        const conversation = store.getConversation(userToken);
+        const conversation = DataStore.getConversation(userToken);
 
         // Forward message to conversation
         const { text } = req.body;
