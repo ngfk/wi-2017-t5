@@ -1,4 +1,5 @@
 import { UserProfile, UserProfileBuilder } from '../models/user-profile';
+import { categoryMap } from '../utils/nlu-category-map';
 import { NaturalLanguageUnderstanding } from './natural-language-understanding';
 import { VisualRecognition } from './visual-recognition';
 
@@ -33,10 +34,35 @@ export class UserParser {
 
     private async parsePost(post: string): Promise<void> {
         const result = await UserParser.NLU.analyze(post);
-        // TODO: modify `this.profile` using NLU result
-        // this.profile.relevantPostResponses.push({
-        //     postResponse: result.keywords
-        // });
+
+        // Sanity check
+        if (!result.categories)
+            throw new Error('[NLU] The categories feature should be enabled.');
+
+        // Set category score threshold
+        const threshold = 1 / (result.categories.length - 1);
+        for (let category of result.categories) {
+            // Check category score
+            if (
+                !category.score ||
+                !category.label ||
+                category.score < threshold
+            ) {
+                continue;
+            }
+
+            // Map category to interest
+            const interests = categoryMap[category.label];
+            if (!interests) continue;
+
+            console.log(post);
+            console.log(`[${category.score}] ${category.label}\n`);
+
+            // Update profile score
+            for (let interest of interests) {
+                this.profile.category(interest, category.score);
+            }
+        }
     }
 
     private async parseImage(image: Buffer): Promise<void> {

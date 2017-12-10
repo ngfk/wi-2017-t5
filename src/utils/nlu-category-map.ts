@@ -1,7 +1,7 @@
-import { UserProfileScores } from '../models/user-profile';
+import { UserInterest } from '../models/user-profile';
 
 // prettier-ignore
-export const categoryMap: { [category: string]: (keyof UserProfileScores)[] | undefined } = {
+export const categoryMap: { [category: string]: UserInterest[] | undefined } = {
     "/art and entertainment/books and literature/best-sellers": undefined,
     "/art and entertainment/books and literature/children's books": undefined,
     "/art and entertainment/books and literature/e-books": undefined,
