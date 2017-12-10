@@ -6,13 +6,19 @@ import {
 } from 'watson-developer-cloud/conversation/v1-generated';
 
 import { Config, ConfigType } from '../models/config';
+import {
+    ConversationContext,
+    ConversationVariable
+} from '../models/conversation-context';
 
 export class Conversation {
     private static API: ConversationV1;
     private static WORKSPACE: string;
+
     private context: Context;
 
     constructor() {
+        this.context = new ConversationContext() as any;
         if (Conversation.API) return;
 
         const config = Config.get(ConfigType.Conversation);
@@ -24,10 +30,18 @@ export class Conversation {
         Conversation.WORKSPACE = config.workspace;
     }
 
+    public setContext<T extends ConversationVariable>(
+        variable: T,
+        value: any
+    ): this {
+        (this.context as any)[variable] = value;
+        return this;
+    }
+
     public async message(text?: string): Promise<string[]> {
         const data = await this.request({
             workspace_id: Conversation.WORKSPACE,
-            context: this.context,
+            context: { ...this.context },
             input: { text: text! }
         });
 

@@ -16,17 +16,22 @@ const read = () => {
 };
 
 export const main = async () => {
-    console.log();
+    conv.setContext('enough_preferences', false);
+
     const start = await conv.message();
-    console.log(`[watson]\n${start}\n`);
+    console.log('[watson]');
+    start.forEach(s => console.log(s));
+    console.log();
 
     while (true) {
         console.log('[user]');
         const input = await read();
-        console.log('');
+        console.log();
 
         const output = await conv.message(input);
-        console.log(`[watson]\n${output}\n`);
+        console.log(`[watson]`);
+        output.forEach(o => console.log(o));
+        console.log();
     }
 };
 
