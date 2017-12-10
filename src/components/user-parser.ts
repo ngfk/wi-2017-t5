@@ -54,14 +54,13 @@ export class UserParser {
                 this.profile.category(interest, category.score);
 
                 if (Config.log('post-parsing')) {
-                    console.log(post);
                     console.log(
-                        '[%s] %s %s',
+                        '%s\n[%s] %s %s\n',
+                        post,
                         category.score,
                         interest,
                         category.label
                     );
-                    console.log();
                 }
             }
         }
