@@ -59,6 +59,7 @@
     "nodemonConfig": {
         "watch": [
             "src/**/*.ts",
+            "src/**/*.json",
             "public/**/*"
         ],
         "exec": "ts-node",
