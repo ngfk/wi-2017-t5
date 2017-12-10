@@ -4,8 +4,6 @@ import { UserInterest } from '../models/interest';
 import { UserProfile } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
 
-type Interest = { label: UserInterest; score: number };
-
 export class Matcher {
     private user: UserProfile;
     private cities: CityProfile[];
