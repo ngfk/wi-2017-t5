@@ -1,0 +1,27 @@
+{
+    "name": "Den Haag",
+    "museums": [
+        { "name": "Mauritshuis", "price": 14, "rating": 5 },
+        { "name": "Panorama Mesdag", "price": 10, "rating": 4.5 },
+        { "name": "Gemeentemuseum Den Haag", "price": 14.5, "rating": 4 },
+        { "name": "Louwman Museum", "price": 14, "rating": 4.5 },
+        { "name": "Escher in the Palace", "price": 9.5, "rating": 3.5 },
+        { "name": "Galery Prince Willem V", "price": 5, "rating": 4.5 }
+    ],
+    "monuments": [
+        { "name": "Binnenhof", "price": 7, "rating": 4 },
+        { "name": "Binnenhof - Ridderzaal", "price": 0, "rating": 4 },
+        { "name": "Binnenhof - Hofvijfer", "price": 0, "rating": 4 },
+        { "name": "Palace Noordeinde", "price": 0, "rating": 3 },
+        { "name": "Palace Kneuterdijk", "price": 12.5, "rating": 4 },
+        { "name": "Palace 'Huis ten Bosch'", "price": 0, "rating": 3 },
+        { "name": "Grand Church", "price": 6, "rating": 4 }
+    ],
+    "clubs": [{ "name": "Millers", "price": 40, "rating": 4 }],
+    "miscs": [
+        { "name": "Madurodam", "price": 16.5, "rating": 4.5 },
+        { "name": "Drievliet", "price": 22.5, "rating": 3 },
+        { "name": "Shopping", "price": 70, "rating": 4 },
+        { "name": "Palace Gardens", "price": 0, "rating": 4 }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Utrecht",
+    "museums": [
+        { "name": "Central Museum", "price": 12.5, "rating": 2.5 },
+        { "name": "Rail Museum", "price": 16, "rating": 4 },
+        { "name": "Miffy Museum", "price": 3, "rating": 1 }
+    ],
+    "monuments": [
+        { "name": "Dom Tower", "price": 0, "rating": 4 },
+        { "name": "The German House", "price": 0, "rating": 4.5 },
+        { "name": "Rietveld Schröderhouse", "price": 0, "rating": 2.5 }
+    ],
+    "clubs": [
+        { "name": "BASIS", "price": 10, "rating": 3 },
+        { "name": "Club Poema", "price": 7.5, "rating": 3 },
+        { "name": "Chupitos", "price": 5, "rating": 3 },
+        { "name": "Bodytalk", "price": 4, "rating": 3 }
+    ],
+    "Misc": [
+        { "name": "Botanical Gardens", "price": 7.5, "rating": 3 },
+        { "name": "Canals", "price": 0, "rating": 5 },
+        { "name": "Mall", "price": 50, "rating": 3 },
+        { "name": "University", "price": 0, "rating": 5 },
+        { "name": "Statues", "price": 0, "rating": 4 },
+        { "name": "Red light district", "price": 50, "rating": 5 }
+    ]
+}
