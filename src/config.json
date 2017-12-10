@@ -10,5 +10,8 @@
     },
     "visual-recognition": {
         "api_key": "ff0e720cf4b833cb6f59c16587a36c847acb1403"
+    },
+    "logging": {
+        "post-parsing": false
     }
 }

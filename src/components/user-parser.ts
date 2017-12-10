@@ -1,3 +1,4 @@
+import { Config } from '../models/config';
 import { UserProfile, UserProfileBuilder } from '../models/user-profile';
 import { categoryMap } from '../utils/nlu-category-map';
 import { NaturalLanguageUnderstanding } from './natural-language-understanding';
@@ -51,9 +52,17 @@ export class UserParser {
             // Update profile score
             for (let interest of interests) {
                 this.profile.category(interest, category.score);
-                console.log(post);
-                console.log(`${category.score} ${interest} ${category.label}`);
-                console.log();
+
+                if (Config.log('post-parsing')) {
+                    console.log(post);
+                    console.log(
+                        '[%s] %s %s',
+                        category.score,
+                        interest,
+                        category.label
+                    );
+                    console.log();
+                }
             }
         }
     }
