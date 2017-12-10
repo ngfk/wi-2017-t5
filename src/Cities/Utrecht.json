@@ -16,7 +16,7 @@
         { "name": "Chupitos", "price": 5, "rating": 3 },
         { "name": "Bodytalk", "price": 4, "rating": 3 }
     ],
-    "Misc": [
+    "misc": [
         { "name": "Botanical Gardens", "price": 7.5, "rating": 3 },
         { "name": "Canals", "price": 0, "rating": 5 },
         { "name": "Mall", "price": 50, "rating": 3 },

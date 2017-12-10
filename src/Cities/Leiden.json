@@ -22,7 +22,7 @@
 		{ "name": "Barrera", "price": 0, "rating": 4.5 },
 		{ "name": "Odessa", "price": 0, "rating": 4.5 }
 	],
-    "miscs": [
+    "misc": [
         { "name": "Hortus Botanicus", "price": 16.5, "rating": 4 },
         { "name": "De Burcht", "price": 22.5, "rating": 4 },
         { "name": "De Muurgedichten van Leiden", "price": 70, "rating": 4.5 }

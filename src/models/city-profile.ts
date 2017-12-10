@@ -1,9 +1,19 @@
+import * as denHaag from '../Cities/Den haag.json';
+import * as leiden from '../Cities/Leiden.json';
+import * as utrecht from '../Cities/Utrecht.json';
+
+export enum City {
+    DenHaag = 'den-haag',
+    Leiden = 'leiden',
+    Utrecht = 'utrecht'
+}
+
 export interface CityProfilePayload {
     name: string;
     museums: Museum[];
     monuments: Monument[];
     clubs: Club[];
-    miscs: Misc[];
+    misc: Misc[];
     priceRange: number;
     ratings: number[];
 }
@@ -37,7 +47,7 @@ export class CityProfile {
     public readonly museums: Museum[];
     public readonly monuments: Monument[];
     public readonly clubs: Club[];
-    public readonly miscs: Misc[];
+    public readonly misc: Misc[];
     public readonly priceRange: number;
     public readonly ratings: number[];
 
@@ -46,10 +56,13 @@ export class CityProfile {
         this.museums = payload.museums;
         this.monuments = payload.monuments;
         this.clubs = payload.clubs;
-        this.miscs = payload.miscs;
+        this.misc = payload.misc;
         this.priceRange = payload.priceRange;
         this.ratings = payload.ratings;
     }
 }
 
-export const cities = new Map<string, CityProfile>();
+export const cities = new Map<City, CityProfile>();
+cities.set(City.DenHaag, denHaag);
+cities.set(City.Leiden, leiden);
+cities.set(City.Utrecht, utrecht);

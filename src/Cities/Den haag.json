@@ -17,8 +17,10 @@
         { "name": "Palace 'Huis ten Bosch'", "price": 0, "rating": 3 },
         { "name": "Grand Church", "price": 6, "rating": 4 }
     ],
-    "clubs": [{ "name": "Millers", "price": 40, "rating": 4 }],
-    "miscs": [
+    "clubs": [
+        { "name": "Millers", "price": 40, "rating": 4 }
+    ],
+    "misc": [
         { "name": "Madurodam", "price": 16.5, "rating": 4.5 },
         { "name": "Drievliet", "price": 22.5, "rating": 3 },
         { "name": "Shopping", "price": 70, "rating": 4 },
