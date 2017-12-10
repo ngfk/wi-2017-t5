@@ -25,5 +25,15 @@
         { "name": "Drievliet", "price": 22.5, "rating": 3 },
         { "name": "Shopping", "price": 70, "rating": 4 },
         { "name": "Palace Gardens", "price": 0, "rating": 4 }
-    ]
+    ],
+    "scores": {
+        "architecture": 0.9,
+        "canal": 0.5,
+        "drugs": 0.4,
+        "flowers": 0.4,
+        "food": 0.7,
+        "museum": 0.85,
+        "party": 0.3,
+        "redLightDistrict": 0.4
+    }
 }

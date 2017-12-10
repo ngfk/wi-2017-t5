@@ -26,5 +26,15 @@
         { "name": "Hortus Botanicus", "price": 16.5, "rating": 4 },
         { "name": "De Burcht", "price": 22.5, "rating": 4 },
         { "name": "De Muurgedichten van Leiden", "price": 70, "rating": 4.5 }
-    ]
+    ],
+    "scores": {
+        "architecture": 0.5,
+        "canal": 0.5,
+        "drugs": 0.6,
+        "flowers": 0.3,
+        "food": 0.8,
+        "museum": 0.3,
+        "party": 0.8,
+        "redLightDistrict": 0.4
+    }
 }

@@ -23,5 +23,15 @@
         { "name": "University", "price": 0, "rating": 5 },
         { "name": "Statues", "price": 0, "rating": 4 },
         { "name": "Red light district", "price": 50, "rating": 5 }
-    ]
+    ],
+    "scores": {
+        "architecture": 0.7,
+        "canal": 1,
+        "drugs": 0.4,
+        "flowers": 0.6,
+        "food": 0.7,
+        "museum": 0.7,
+        "party": 0.5,
+        "redLightDistrict": 0.6
+    }
 }
