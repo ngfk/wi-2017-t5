@@ -45,7 +45,7 @@ export class DataStore {
     }
 
     public getCityProfiles(): CityProfile[] {
-        return Array.from(this.cities.entries());
+        return Array.from(this.cities.entries()).map(([_, value]) => value);
     }
 }
 
