@@ -24,11 +24,11 @@ export class DataStore {
     }
 
     public setUserProfile(token: UserToken, profile: UserProfile): void {
-        this.profiles[token.id] = profile;
+        this.profiles.set(token.id, profile);
     }
 
     public getUserProfile(token: UserToken): UserProfile | undefined {
-        return this.profiles[token.id];
+        return this.profiles.get(token.id);
     }
 
     public getConversation(user: UserToken): Conversation {
@@ -41,11 +41,15 @@ export class DataStore {
     }
 
     public setCityProfile(city: City, profile: CityProfile): void {
-        this.cities[city] = profile;
+        this.cities.set(city, profile);
     }
 
     public getCityProfile(city: City): CityProfile | undefined {
-        return this.cities[city];
+        return this.cities.get(city);
+    }
+
+    public getCityProfiles(): CityProfile[] {
+        return Array.from(this.cities.entries());
     }
 }
 
