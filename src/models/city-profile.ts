@@ -1,3 +1,5 @@
+import { InterestScores } from './interest';
+
 export enum City {
     DenHaag = 'den-haag',
     Leiden = 'leiden',
@@ -12,6 +14,7 @@ export interface CityProfile {
     readonly misc: Misc[];
     readonly priceRange: number;
     readonly ratings: number[];
+    readonly scores: InterestScores;
 }
 
 export interface Museum {

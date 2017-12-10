@@ -1,4 +1,4 @@
-import { UserInterest } from './interest';
+import { InterestScores, UserInterest } from './interest';
 
 export class UserProfileBuilder {
     private profile: UserProfile;
@@ -43,7 +43,7 @@ export class UserProfileBuilder {
 
 export interface UserProfile {
     readonly name: string;
-    readonly scores: { [interest in UserInterest]: number };
+    readonly scores: InterestScores;
 }
 
 export const profiles = new Map<string, UserProfile>();
