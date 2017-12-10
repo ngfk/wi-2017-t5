@@ -40,27 +40,20 @@ export class UserParser {
             throw new Error('[NLU] The categories feature should be enabled.');
 
         // Set category score threshold
-        const threshold = 1 / (result.categories.length - 1);
         for (let category of result.categories) {
             // Check category score
-            if (
-                !category.score ||
-                !category.label ||
-                category.score < threshold
-            ) {
-                continue;
-            }
+            if (!category.score || !category.label) continue;
 
             // Map category to interest
             const interests = categoryMap[category.label];
             if (!interests) continue;
 
-            console.log(post);
-            console.log(`[${category.score}] ${category.label}\n`);
-
             // Update profile score
             for (let interest of interests) {
                 this.profile.category(interest, category.score);
+                console.log(post);
+                console.log(`${category.score} ${interest} ${category.label}`);
+                console.log();
             }
         }
     }

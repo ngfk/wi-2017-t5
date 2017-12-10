@@ -37,7 +37,19 @@ export class UserProfileBuilder {
     }
 
     public build(): UserProfile {
-        return { ...this.profile };
+        const highest = Object.keys(this.profile.scores)
+            .map(key => this.profile.scores[key])
+            .reduce((current, score) => (score > current ? score : current), 0);
+
+        const normalizedScores = Object.keys(this.profile.scores).reduce(
+            (acc, key) => {
+                acc[key] = this.profile.scores[key] / highest;
+                return acc;
+            },
+            {} as InterestScores
+        );
+
+        return { ...this.profile, scores: normalizedScores };
     }
 }
 
