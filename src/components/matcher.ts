@@ -18,51 +18,33 @@ export class Matcher {
         this.cities = store.getCityProfiles();
     }
 
-    public match(): CityProfile | undefined {
-        const highestprefs = this.highestScores();
-        const enough_preferences = highestprefs[0].score > 0.5;
-        let matching_city: CityProfile | undefined;
-        if (enough_preferences) {
-            for (let city of this.cities) {
-                if (this.interestMatch(city, highestprefs[0])) {
-                    matching_city = city;
-                }
+    public match(): CityProfile {
+        // Relevance modifier per interest
+        const relevance: { [interest in UserInterest]: number } = {
+            architecture: 1,
+            canal: 1,
+            drugs: 0.2,
+            flowers: 1,
+            food: 0.2,
+            museum: 1,
+            party: 1,
+            redLightDistrict: 0.2
+        };
+
+        const scores: number[] = [];
+        for (let i = 0; i < this.cities.length; i++) {
+            const city = this.cities[i];
+
+            scores[i] = 0;
+            for (let interest of Object.keys(city.scores) as UserInterest[]) {
+                scores[i] +=
+                    this.user.scores[interest] *
+                    city.scores[interest] *
+                    relevance[interest];
             }
         }
-        return matching_city;
-    }
 
-    private interestMatch(city: CityProfile, interest: Interest): boolean {
-        switch (interest.label) {
-            case 'architecture':
-                break;
-            case 'canal':
-                break;
-            case 'drugs':
-                break;
-            case 'flowers':
-                break;
-            case 'food':
-                break;
-            case 'museum':
-                break;
-            case 'party':
-                break;
-            case 'redLightDistrict':
-                break;
-        }
-        return false;
-    }
-
-    private highestScores(): Interest[] {
-        const interests: Interest[] = [];
-        for (let interest in this.user.scores) {
-            interests.push({
-                label: interest as UserInterest,
-                score: this.user[interest]
-            });
-        }
-
-        return interests.sort((a, b) => b.score - a.score).slice(0, 3);
+        const cityIndex = scores.indexOf(Math.max(...scores));
+        return this.cities[cityIndex];
     }
 }
