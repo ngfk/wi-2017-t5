@@ -27,7 +27,8 @@ export class Conversation {
     public async message(text?: string): Promise<string[]> {
         const data = await this.request({
             workspace_id: Conversation.WORKSPACE,
-            context: this.context
+            context: this.context,
+            input: { text: text! }
         });
 
         this.context = data.context;
