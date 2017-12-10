@@ -1,0 +1,30 @@
+{
+    "name": "Leiden",
+    "museums": [
+        { "name": "Stedelijk Molenmuseum de Valk", "price": 4, "rating": 4.5 },
+        { "name": "CORPUS 'reis door de mens'", "price": 14, "rating": 4 },
+        { "name": "Museum Volkenkunde", "price": 14, "rating": 4.5 },
+        { "name": "Rijksmuseum van Oudheden", "price": 15, "rating": 4.5 },
+        { "name": "Naturalis", "price": 12, "rating": 4.5 }
+    ],
+    "monuments": [
+        { "name": "Pieterskerk", "price": 0, "rating": 4 },
+        { "name": "Molen De Put", "price": 0, "rating": 4 },
+        { "name": "Stadhuis van Leiden", "price": 0, "rating": 4 },
+        { "name": "Gravensteen", "price": 0, "rating": 4 },
+        { "name": "Rijksmonument Jean Pesijnhofje Leiden", "price": 0, "rating": 4.5 },
+        { "name": "Koornbrug Leiden", "price": 0, "rating": 4.5 }
+    ],
+    "clubs": [
+		{ "name": "Lemmy's Biercafé", "price": 0, "rating": 4.5 },
+		{ "name": "NEXT Leiden", "price": 0, "rating": 3.5 },
+		{ "name": "Annie's", "price": 0, "rating": 4.5 },
+		{ "name": "Barrera", "price": 0, "rating": 4.5 },
+		{ "name": "Odessa", "price": 0, "rating": 4.5 }
+	],
+    "miscs": [
+        { "name": "Hortus Botanicus", "price": 16.5, "rating": 4 },
+        { "name": "De Burcht", "price": 22.5, "rating": 4 },
+        { "name": "De Muurgedichten van Leiden", "price": 70, "rating": 4.5 }
+    ]
+}
