@@ -4,14 +4,16 @@ export class UserProfileBuilder {
     constructor(name: string) {
         this.profile = {
             name,
-            architecture: 0,
-            canal: 0,
-            drugs: 0,
-            flowers: 0,
-            food: 0,
-            museum: 0,
-            party: 0,
-            redLightDistrict: 0
+            scores: {
+                architecture: 0,
+                canal: 0,
+                drugs: 0,
+                flowers: 0,
+                food: 0,
+                museum: 0,
+                party: 0,
+                redLightDistrict: 0
+            }
         };
     }
 
@@ -19,17 +21,20 @@ export class UserProfileBuilder {
     // score from NLU or VR.
 
     public category<T extends UserInterest>(interest: T, score: number): this {
-        this.setScore(interest, this.profile[interest] + score);
+        this.setScore(interest, this.profile.scores[interest] + score);
         return this;
     }
 
-    public setScore<T extends UserInterest>(type: T, score: number): this {
-        this.update({ [type]: score });
+    public setScore<T extends UserInterest>(interest: T, score: number): this {
+        this.update({ [interest]: score });
         return this;
     }
 
-    public update(profile: Partial<UserProfileScores>): this {
-        this.profile = { ...this.profile, ...profile };
+    public update(scores: Partial<UserProfileScores>): this {
+        this.profile = {
+            ...this.profile,
+            scores: { ...this.profile.scores, ...scores }
+        };
         return this;
     }
 
@@ -38,8 +43,9 @@ export class UserProfileBuilder {
     }
 }
 
-export interface UserProfile extends UserProfileScores {
+export interface UserProfile {
     readonly name: string;
+    readonly scores: UserProfileScores;
 }
 
 export interface UserProfileScores {
