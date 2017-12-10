@@ -1,4 +1,4 @@
-import { UserInterest } from '../models/user-profile';
+import { UserInterest } from '../models/interest';
 
 // prettier-ignore
 export const categoryMap: { [category: string]: UserInterest[] | undefined } = {

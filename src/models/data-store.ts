@@ -40,10 +40,6 @@ export class DataStore {
         return conversation;
     }
 
-    public setCityProfile(city: City, profile: CityProfile): void {
-        this.cities.set(city, profile);
-    }
-
     public getCityProfile(city: City): CityProfile | undefined {
         return this.cities.get(city);
     }

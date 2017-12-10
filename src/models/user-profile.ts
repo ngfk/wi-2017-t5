@@ -1,3 +1,5 @@
+import { UserInterest } from './interest';
+
 export class UserProfileBuilder {
     private profile: UserProfile;
 
@@ -26,15 +28,11 @@ export class UserProfileBuilder {
     }
 
     public setScore<T extends UserInterest>(interest: T, score: number): this {
-        this.update({ [interest]: score });
-        return this;
-    }
-
-    public update(scores: Partial<UserProfileScores>): this {
         this.profile = {
             ...this.profile,
-            scores: { ...this.profile.scores, ...scores }
+            scores: { ...this.profile.scores, [interest]: score }
         };
+
         return this;
     }
 
@@ -45,20 +43,7 @@ export class UserProfileBuilder {
 
 export interface UserProfile {
     readonly name: string;
-    readonly scores: UserProfileScores;
+    readonly scores: { [interest in UserInterest]: number };
 }
-
-export interface UserProfileScores {
-    readonly architecture: number;
-    readonly canal: number;
-    readonly drugs: number;
-    readonly flowers: number;
-    readonly food: number;
-    readonly museum: number;
-    readonly party: number;
-    readonly redLightDistrict: number;
-}
-
-export type UserInterest = keyof UserProfileScores;
 
 export const profiles = new Map<string, UserProfile>();

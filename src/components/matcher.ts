@@ -1,6 +1,7 @@
 import { CityProfile } from '../models/city-profile';
 import { store } from '../models/data-store';
-import { UserInterest, UserProfile } from '../models/user-profile';
+import { UserInterest } from '../models/interest';
+import { UserProfile } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
 
 type Interest = { label: UserInterest; score: number };
