@@ -1,9 +1,9 @@
 import { CityProfile } from '../models/city-profile';
 import { store } from '../models/data-store';
-import { UserProfile } from '../models/user-profile';
+import { UserInterest, UserProfile } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
 
-type Interest = { label: string; score: number };
+type Interest = { label: UserInterest; score: number };
 
 export class Matcher {
     private user: UserProfile;
@@ -57,7 +57,7 @@ export class Matcher {
         const interests: Interest[] = [];
         for (let interest in this.user.scores) {
             interests.push({
-                label: interest,
+                label: interest as UserInterest,
                 score: this.user[interest]
             });
         }
