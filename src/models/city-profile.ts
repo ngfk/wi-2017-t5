@@ -1,6 +1,6 @@
-import * as denHaag from '../Cities/Den haag.json';
-import * as leiden from '../Cities/Leiden.json';
-import * as utrecht from '../Cities/Utrecht.json';
+import * as denHaag from '../cities/Den haag.json';
+import * as leiden from '../cities/Leiden.json';
+import * as utrecht from '../cities/Utrecht.json';
 
 export enum City {
     DenHaag = 'den-haag',
