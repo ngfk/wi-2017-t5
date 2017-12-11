@@ -41,8 +41,7 @@ router.post('/', (req, res) => {
         DataStore.getConversation(userToken)
             .setContext('crawled', true)
             .setContext('enough_preferences', enoughPreferences)
-            .setContext('matching_city', cityProfile.name)
-            .setContext('reasons_of_match', 'magic');
+            .setCityProfile(cityProfile);
     });
 
     // Return the JWT to the user
