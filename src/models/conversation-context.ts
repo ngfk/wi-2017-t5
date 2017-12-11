@@ -1,4 +1,5 @@
 export class ConversationContext {
+    public crawled: boolean;
     public enough_preferences: boolean;
     public matching_city: string;
     public preferences: string;

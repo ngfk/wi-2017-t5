@@ -41,7 +41,10 @@ const setupUser = async () => {
 export const main = async () => {
     const user = await setupUser();
     const conversation = DataStore.getConversation(user);
-    conversation.setContext('enough_preferences', false);
+
+    conversation
+        .setContext('crawled', true)
+        .setContext('enough_preferences', false);
 
     const start = await conversation.message();
     console.log('[%s]\n%s\n', 'Watson', start.join('\n'));

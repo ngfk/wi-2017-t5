@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
     parser.parse().then(userProfile => {
         console.log(`[login] user profile for ${userToken.id} complete`);
         DataStore.setUserProfile(userToken, userProfile);
+        DataStore.getConversation(userToken).setContext('crawled', true);
     });
 
     // Return the JWT to the user
