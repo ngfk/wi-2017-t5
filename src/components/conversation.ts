@@ -49,7 +49,6 @@ export class Conversation {
 
         this.setContext('enough_preferences', enoughPreferences);
         this.setContext('matching_city', cityProfile.name);
-        this.setContext('reasons_of_match', 'magic');
         return this;
     }
 

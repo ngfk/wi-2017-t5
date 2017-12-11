@@ -3,20 +3,25 @@ import { DataStore } from '../models/data-store';
 import { UserInterest } from '../models/interest';
 import { UserProfile } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
+import { reasonMap } from '../utils/interest-reason-map';
 
 export class Matcher {
-    private user: UserProfile;
-    private cities: CityProfile[];
+    private user: UserToken;
+    private userProfile: UserProfile;
+    private cityProfiles: CityProfile[];
 
     constructor(user: UserToken) {
+        this.user = user;
         const profile = DataStore.getUserProfile(user);
         if (!profile) throw new Error('Unknown user: ' + user.id);
 
-        this.user = profile;
-        this.cities = DataStore.getCityProfiles();
+        this.userProfile = profile;
+        this.cityProfiles = DataStore.getCityProfiles();
     }
 
     public match(): CityProfile {
+        const conversation = DataStore.getConversation(this.user);
+
         // Relevance modifier per interest
         const relevance: { [interest in UserInterest]: number } = {
             architecture: 1,
@@ -30,19 +35,32 @@ export class Matcher {
         };
 
         const scores: number[] = [];
-        for (let i = 0; i < this.cities.length; i++) {
-            const city = this.cities[i];
+        const reasons: string[] = [];
+        for (let i = 0; i < this.cityProfiles.length; i++) {
+            const city = this.cityProfiles[i];
 
             scores[i] = 0;
+            let highestScore = 0;
             for (let interest of Object.keys(city.scores) as UserInterest[]) {
-                scores[i] +=
-                    this.user.scores[interest] *
+                const score =
+                    this.userProfile.scores[interest] *
                     city.scores[interest] *
                     relevance[interest];
+
+                if (score > highestScore) {
+                    highestScore = score;
+                    reasons[i] = interest;
+                }
+
+                scores[i] += score;
             }
         }
 
         const cityIndex = scores.indexOf(Math.max(...scores));
-        return this.cities[cityIndex];
+        conversation.setContext(
+            'reasons_of_match',
+            reasonMap[reasons[cityIndex]]
+        );
+        return this.cityProfiles[cityIndex];
     }
 }
