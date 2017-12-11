@@ -27,6 +27,7 @@
         { "name": "De Burcht", "price": 22.5, "rating": 4 },
         { "name": "De Muurgedichten van Leiden", "price": 70, "rating": 4.5 }
     ],
+    "location": [52.1601, 4.4970],
     "scores": {
         "architecture": 0.5,
         "canal": 0.5,

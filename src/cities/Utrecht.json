@@ -24,6 +24,7 @@
         { "name": "Statues", "price": 0, "rating": 4 },
         { "name": "Red light district", "price": 50, "rating": 5 }
     ],
+    "location": [52.0907, 5.1214],
     "scores": {
         "architecture": 0.7,
         "canal": 1,

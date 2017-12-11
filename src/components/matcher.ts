@@ -61,6 +61,8 @@ export class Matcher {
             'reasons_of_match',
             reasonMap[reasons[cityIndex]]
         );
-        return this.cityProfiles[cityIndex];
+        const match = this.cityProfiles[cityIndex];
+        DataStore.setCityMatch(this.user, match);
+        return match;
     }
 }

@@ -26,6 +26,7 @@
         { "name": "Shopping", "price": 70, "rating": 4 },
         { "name": "Palace Gardens", "price": 0, "rating": 4 }
     ],
+    "location": [52.0705, 4.3007],
     "scores": {
         "architecture": 0.9,
         "canal": 0.5,

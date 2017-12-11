@@ -14,6 +14,7 @@ export interface CityProfile {
     readonly misc: Misc[];
     readonly priceRange: number;
     readonly ratings: number[];
+    readonly location: [number, number];
     readonly scores: InterestScores;
 }
 

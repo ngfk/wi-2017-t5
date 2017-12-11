@@ -15,6 +15,8 @@ export class DataStore {
         .set(City.Leiden, leiden)
         .set(City.Utrecht, utrecht);
 
+    private static match = new Map<string, CityProfile>();
+
     public static setUserProfile(token: UserToken, profile: UserProfile): void {
         this.profiles.set(token.id, profile);
     }
@@ -38,5 +40,13 @@ export class DataStore {
 
     public static getCityProfiles(): CityProfile[] {
         return Array.from(this.cities.entries()).map(([_, value]) => value);
+    }
+
+    public static setCityMatch(token: UserToken, city: CityProfile): void {
+        this.match.set(token.id, city);
+    }
+
+    public static getCityMatch(token: UserToken): CityProfile | undefined {
+        return this.match.get(token.id);
     }
 }

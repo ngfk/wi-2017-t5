@@ -61,7 +61,7 @@ export const main = async () => {
         .setCityProfile(cityProfile);
 
     const start = await conversation.message();
-    console.log('[%s]\n%s\n', 'Watson', start.join('\n'));
+    console.log('[%s]\n%s\n', 'Watson', start.text.join('\n'));
 
     while (true) {
         console.log(`[${user.name}]`);
@@ -69,7 +69,7 @@ export const main = async () => {
         console.log();
 
         const output = await conversation.message(input);
-        console.log('[%s]\n%s\n', 'Watson', output.join('\n'));
+        console.log('[%s]\n%s\n', 'Watson', output.text.join('\n'));
     }
 };
 

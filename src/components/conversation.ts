@@ -10,9 +10,15 @@ import { Config, ConfigType } from '../models/config';
 import { ConversationVariable } from '../models/conversation-context';
 import { DataStore } from '../models/data-store';
 import { UserInterest } from '../models/interest';
-import { UserProfileBuilder } from '../models/user-profile';
+import { UserProfile, UserProfileBuilder } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
 import { Matcher } from './matcher';
+
+export interface MessageResult {
+    text: string[];
+    location?: [number, number];
+    profile?: UserProfile;
+}
 
 export class Conversation {
     private static API: ConversationV1;
@@ -60,7 +66,7 @@ export class Conversation {
         return this;
     }
 
-    public async message(text?: string): Promise<string[]> {
+    public async message(text?: string): Promise<MessageResult> {
         const data = await this.request({
             workspace_id: Conversation.WORKSPACE,
             context: { ...this.context },
@@ -68,11 +74,23 @@ export class Conversation {
         });
 
         this.context = data.context;
-        this.adjustScore();
-        return data.output.text;
+        const adjusted = this.adjustScore();
+
+        let location = undefined;
+        if (this.context['location']) {
+            const match = DataStore.getCityMatch(this.user);
+            location = match && match.location;
+            delete this.context['location'];
+        }
+
+        return {
+            text: data.output.text,
+            profile: adjusted && DataStore.getUserProfile(this.user),
+            location
+        };
     }
 
-    private adjustScore(): void {
+    private adjustScore(): boolean {
         const profile = DataStore.getUserProfile(this.user);
         if (!profile) {
             // prettier-ignore
@@ -103,6 +121,8 @@ export class Conversation {
             const city = matcher.match();
             this.setCityProfile(city);
         }
+
+        return rematch;
     }
 
     private request(payload: MessageParams): Promise<MessageResponse> {
