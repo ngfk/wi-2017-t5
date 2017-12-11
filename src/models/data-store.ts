@@ -27,7 +27,7 @@ export class DataStore {
         const stored = this.conversations.get(user.id);
         if (stored) return stored;
 
-        const conversation = new Conversation();
+        const conversation = new Conversation(user);
         this.conversations.set(user.id, conversation);
         return conversation;
     }

@@ -52,7 +52,7 @@ export class UserParser {
 
             // Update profile score
             for (let interest of interests) {
-                this.profile.category(interest, category.score);
+                this.profile.updateScore(interest, category.score);
 
                 if (Config.log('post-parsing')) {
                     console.log(
@@ -77,7 +77,7 @@ export class UserParser {
             const interest = classMap[resultClass.class];
             if (!interest) continue;
 
-            this.profile.category(interest, resultClass.score);
+            this.profile.updateScore(interest, resultClass.score);
         }
     }
 }

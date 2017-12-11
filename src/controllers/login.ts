@@ -1,5 +1,6 @@
 import * as express from 'express';
 
+import { Matcher } from '../components/matcher';
 import { UserParser } from '../components/user-parser';
 import { DataStore } from '../models/data-store';
 import { UserToken } from '../models/user-token';
@@ -28,8 +29,20 @@ router.post('/', (req, res) => {
     // complete.
     parser.parse().then(userProfile => {
         console.log(`[login] user profile for ${userToken.id} complete`);
+
+        const enoughPreferences = !Object.keys(userProfile.scores)
+            .map(key => userProfile.scores[key])
+            .every(score => score === 0);
+
+        const matcher = new Matcher(userToken);
+        const cityProfile = matcher.match();
+
         DataStore.setUserProfile(userToken, userProfile);
-        DataStore.getConversation(userToken).setContext('crawled', true);
+        DataStore.getConversation(userToken)
+            .setContext('crawled', true)
+            .setContext('enough_preferences', enoughPreferences)
+            .setContext('matching_city', cityProfile.name)
+            .setContext('reasons_of_match', 'magic');
     });
 
     // Return the JWT to the user

@@ -20,10 +20,18 @@ export class UserProfileBuilder {
         };
     }
 
-    // TODO: Extend with functions that update the score given a confidence
-    // score from NLU or VR.
+    public static fromProfile(profile: UserProfile): UserProfileBuilder {
+        const builder = new UserProfileBuilder(profile.name);
+        for (let key in profile.scores)
+            builder.setScore(key as UserInterest, profile.scores[key]);
 
-    public category<T extends UserInterest>(interest: T, score: number): this {
+        return builder;
+    }
+
+    public updateScore<T extends UserInterest>(
+        interest: T,
+        score: number
+    ): this {
         this.setScore(interest, this.profile.scores[interest] + score);
         return this;
     }
@@ -63,5 +71,3 @@ export interface UserProfile {
     readonly name: string;
     readonly scores: InterestScores;
 }
-
-export const profiles = new Map<string, UserProfile>();

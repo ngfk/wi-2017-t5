@@ -3,6 +3,7 @@ import { join } from 'path';
 import { createInterface } from 'readline';
 import { promisify } from 'util';
 
+import { Matcher } from './components/matcher';
 import { UserParser } from './components/user-parser';
 import { DataStore } from './models/data-store';
 import { UserToken } from './models/user-token';
@@ -52,10 +53,12 @@ const setupUser = async () => {
 export const main = async () => {
     const user = await setupUser();
     const conversation = DataStore.getConversation(user);
+    const matcher = new Matcher(user);
+    const cityProfile = matcher.match();
 
-    conversation
+    DataStore.getConversation(user)
         .setContext('crawled', true)
-        .setContext('enough_preferences', false);
+        .setCityProfile(cityProfile);
 
     const start = await conversation.message();
     console.log('[%s]\n%s\n', 'Watson', start.join('\n'));
