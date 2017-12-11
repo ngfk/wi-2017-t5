@@ -13,6 +13,7 @@
         "custom_classifier_id": "iNetherlands_588666652"
     },
     "logging": {
-        "post-parsing": false
+        "post-parsing": false,
+        "user-profile": true
     }
 }

@@ -1,3 +1,4 @@
+import { Config } from './config';
 import { InterestScores, UserInterest } from './interest';
 
 export class UserProfileBuilder {
@@ -43,13 +44,18 @@ export class UserProfileBuilder {
 
         const normalizedScores = Object.keys(this.profile.scores).reduce(
             (acc, key) => {
-                acc[key] = this.profile.scores[key] / highest;
+                acc[key] = this.profile.scores[key] / highest || 0;
                 return acc;
             },
             {} as InterestScores
         );
 
-        return { ...this.profile, scores: normalizedScores };
+        const profile = { ...this.profile, scores: normalizedScores };
+        if (Config.log('user-profile')) {
+            console.log(JSON.stringify(profile, undefined, 4));
+        }
+
+        return profile;
     }
 }
 

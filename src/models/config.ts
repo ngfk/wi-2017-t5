@@ -42,4 +42,5 @@ export interface VisualRecognitionConfig {
 
 export interface LoggingConfig {
     'post-parsing': boolean;
+    'user-profile': boolean;
 }
