@@ -52,7 +52,7 @@ export class UserProfileBuilder {
 
         const profile = { ...this.profile, scores: normalizedScores };
         if (Config.log('user-profile')) {
-            console.log(JSON.stringify(profile, undefined, 4));
+            console.log('%s\n', JSON.stringify(profile, undefined, 4));
         }
 
         return profile;
