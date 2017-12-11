@@ -1,6 +1,7 @@
 import { Config } from '../models/config';
 import { UserProfile, UserProfileBuilder } from '../models/user-profile';
 import { categoryMap } from '../utils/nlu-category-map';
+import { classMap } from '../utils/vr-class-map';
 import { NaturalLanguageUnderstanding } from './natural-language-understanding';
 import { VisualRecognition } from './visual-recognition';
 
@@ -73,13 +74,10 @@ export class UserParser {
 
         for (let resultClass of result.images[0].classifiers[0].classes) {
             if (!resultClass.score) continue;
+            const interest = classMap[resultClass.class];
+            if (!interest) continue;
 
-            const interests = categoryMap[resultClass.class_name];
-            if (!interests) continue;
-
-            for (let interest of interests) {
-                this.profile.category(interest, resultClass.score);
-            }
+            this.profile.category(interest, resultClass.score);
         }
     }
 }
