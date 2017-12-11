@@ -34,10 +34,11 @@ router.post('/', (req, res) => {
             .map(key => userProfile.scores[key])
             .every(score => score === 0);
 
+        DataStore.setUserProfile(userToken, userProfile);
+
         const matcher = new Matcher(userToken);
         const cityProfile = matcher.match();
 
-        DataStore.setUserProfile(userToken, userProfile);
         DataStore.getConversation(userToken)
             .setContext('crawled', true)
             .setContext('enough_preferences', enoughPreferences)

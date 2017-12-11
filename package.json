@@ -8,7 +8,7 @@
         "start": "node dist/index.js",
         "watch": "cross-env PORT=8010 JWT_SECRET=un-secure nodemon ./src/index.ts",
         "conversation": "JWT_SECRET=un-secure nodemon ./src/debug.ts",
-        "deploy": "tsc && cf push",
+        "deploy": "tsc && cp ./src/config.json ./dist/config.json&& cp -R ./src/cities ./dist && cf push",
         "clean": "rimraf dist"
     },
     "author": "",

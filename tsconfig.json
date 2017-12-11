@@ -3,7 +3,7 @@
         // Basic Options
         "target": "es5",
         "module": "commonjs",
-        "lib": ["esnext"],
+        "lib": ["esnext", "dom"],
         "allowJs": false,
         "checkJs": false,
         "declaration": true,
@@ -14,7 +14,7 @@
         // Strict Type-Checking Options
         "strict": true,
         "noImplicitAny": false,
-        "strictNullChecks": true,
+        "strictNullChecks": false,
         "noImplicitThis": true,
         "alwaysStrict": true,
 
@@ -25,7 +25,8 @@
         "noFallthroughCasesInSwitch": false,
 
         // Module Resolution Options
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "skipLibCheck": true
     },
     "include": ["src"]
 }
