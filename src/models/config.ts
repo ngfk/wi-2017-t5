@@ -37,6 +37,7 @@ export interface NaturalLanguageUnderstandingConfig {
 
 export interface VisualRecognitionConfig {
     readonly api_key: string;
+    readonly custom_classifier_id: string;
 }
 
 export interface LoggingConfig {

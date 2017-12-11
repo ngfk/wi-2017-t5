@@ -8,6 +8,7 @@ import { Config, ConfigType } from '../models/config';
 
 export class VisualRecognition {
     private static API: VisualRecognitionV3;
+    private static CUSTOM_CLASSIFIER_ID: string;
 
     constructor() {
         if (VisualRecognition.API) return;
@@ -17,10 +18,16 @@ export class VisualRecognition {
             api_key: config.api_key,
             version_date: '2016-05-20'
         });
+        VisualRecognition.CUSTOM_CLASSIFIER_ID = config.custom_classifier_id;
     }
 
     public classify(file: Buffer): Promise<ClassifierResult> {
-        return this.request({ images_file: file });
+        return this.request({
+            images_file: file,
+            parameters: {
+                classifier_ids: VisualRecognition.CUSTOM_CLASSIFIER_ID
+            } as any
+        });
     }
 
     private request(payload: ClassifyParams): Promise<ClassifierResult> {

@@ -9,7 +9,8 @@
         "password": "Rr6ZqPYZ4kwb"
     },
     "visual-recognition": {
-        "api_key": "ff0e720cf4b833cb6f59c16587a36c847acb1403"
+        "api_key": "ff0e720cf4b833cb6f59c16587a36c847acb1403",
+        "custom_classifier_id": "iNetherlands_588666652"
     },
     "logging": {
         "post-parsing": false
