@@ -45,4 +45,18 @@ export class Matcher {
         const cityIndex = scores.indexOf(Math.max(...scores));
         return this.cities[cityIndex];
     }
+
+    private preferenceCount(): number {
+        const interests: number[] = [];
+        let zeros = 0;
+        for (let interest in this.user.scores) {
+            interests.push(this.user[interest]);
+        }
+        for (let numbers of interests) {
+            if (numbers === 0) {
+                zeros += 1;
+            }
+        }
+        return zeros;
+    }
 }
