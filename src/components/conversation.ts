@@ -68,11 +68,12 @@ export class Conversation {
             input: { text: text! }
         });
 
-        this.context = this.adjustScore(data.context);
+        this.context = data.context;
+        this.adjustScore();
         return data.output.text;
     }
 
-    private adjustScore(context: any): any {
+    private adjustScore(): void {
         const profile = DataStore.getUserProfile(this.user);
         if (!profile) {
             // prettier-ignore
@@ -85,25 +86,24 @@ export class Conversation {
         const interests = Object.keys(profile.scores) as UserInterest[];
 
         for (let interest of interests) {
-            if (context[interest + '_positive']) {
+            if (this.context[interest + '_positive']) {
                 rematch = true;
-                const newProfile = builder.setScore(interest, 1.5).build();
+                const newProfile = builder.setScore(interest, 1.2).build();
                 DataStore.setUserProfile(this.user, newProfile);
-                delete context[interest + '_positive'];
-            } else if (context[interest + '_negative']) {
+                delete this.context[interest + '_positive'];
+            } else if (this.context[interest + '_negative']) {
                 rematch = true;
                 const newProfile = builder.setScore(interest, 0).build();
                 DataStore.setUserProfile(this.user, newProfile);
-                delete context[interest + '_negative'];
+                delete this.context[interest + '_negative'];
             }
         }
 
         if (rematch) {
             const matcher = new Matcher(this.user);
-            this.setCityProfile(matcher.match());
+            const city = matcher.match();
+            this.setCityProfile(city);
         }
-
-        return context;
     }
 
     private request(payload: MessageParams): Promise<MessageResponse> {
