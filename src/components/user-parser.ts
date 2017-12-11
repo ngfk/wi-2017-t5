@@ -68,9 +68,18 @@ export class UserParser {
 
     private async parseImage(image: Buffer): Promise<void> {
         const result = await UserParser.VR.classify(image);
-        // TODO: modify `this.profile` using new image result
-        // this.profile.relevantPictureResponses.push({
-        //     pictureResponse: result
-        // });
+        if (!result.classes)
+            throw new Error('[VR] The classes feature should be enabled.');
+
+        for (let resultClass of result.classes) {
+            if (!resultClass.score) continue;
+
+            const interests = categoryMap[resultClass.class_name];
+            if (!interests) continue;
+
+            for (let interest of interests) {
+                this.profile.category(interest, resultClass.score);
+            }
+        }
     }
 }
