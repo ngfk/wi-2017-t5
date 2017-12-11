@@ -16,8 +16,10 @@ router.post('/', async (req, res) => {
     console.log(`[login] new user ${userToken.name}, with id: ${userToken.id}`);
 
     // Parse user posts
-    if (!Array.isArray(post)) parser.addPost(post);
-    else post.forEach(p => parser.addPost(p));
+    if (post) {
+        if (!Array.isArray(post)) parser.addPost(post);
+        else post.forEach(p => parser.addPost(p));
+    }
 
     // Parse user images
     for (let file of req.files || []) {
