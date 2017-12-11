@@ -1,4 +1,7 @@
+import { readFile as nodeReadFile } from 'fs';
+import { join } from 'path';
 import { createInterface } from 'readline';
+import { promisify } from 'util';
 
 import { UserParser } from './components/user-parser';
 import { DataStore } from './models/data-store';
@@ -11,6 +14,13 @@ const rl = createInterface({
 
 const read = () =>
     new Promise<string>(resolve => rl.question('', answer => resolve(answer)));
+
+const readFile = promisify(nodeReadFile);
+
+const readImage = (name: string): Promise<Buffer> => {
+    const path = join(__dirname, '../images', name);
+    return readFile(path);
+};
 
 const setupUser = async () => {
     const user = UserToken.create('Joost');
@@ -32,6 +42,7 @@ const setupUser = async () => {
         .addPost("And now it's time for a nice cold beer at a terrace")
         .addPost('Watching soccer')
         .addPost('The tickets for "the dubliners" came today :D')
+        .addImage(await readImage('test.jpg'))
         .parse();
 
     DataStore.setUserProfile(user, profile);
