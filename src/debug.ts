@@ -42,7 +42,7 @@ const setupUser = async () => {
         .addPost("And now it's time for a nice cold beer at a terrace")
         .addPost('Watching soccer')
         .addPost('The tickets for "the dubliners" came today :D')
-        .addImage(await readImage('test.jpg'))
+        // .addImage(await readImage('test.jpg'))
         .parse();
 
     DataStore.setUserProfile(user, profile);
