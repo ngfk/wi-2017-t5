@@ -1,5 +1,5 @@
 import { CityProfile } from '../models/city-profile';
-import { store } from '../models/data-store';
+import { DataStore } from '../models/data-store';
 import { UserInterest } from '../models/interest';
 import { UserProfile } from '../models/user-profile';
 import { UserToken } from '../models/user-token';
@@ -9,11 +9,11 @@ export class Matcher {
     private cities: CityProfile[];
 
     constructor(user: UserToken) {
-        const profile = store.getUserProfile(user);
+        const profile = DataStore.getUserProfile(user);
         if (!profile) throw new Error('Unknown user: ' + user.id);
 
         this.user = profile;
-        this.cities = store.getCityProfiles();
+        this.cities = DataStore.getCityProfiles();
     }
 
     public match(): CityProfile {
