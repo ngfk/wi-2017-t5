@@ -7,7 +7,7 @@ import { UserToken } from '../models/user-token';
 
 const router: express.Router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { name, post } = req.body;
     const parser = new UserParser(name);
 
@@ -25,25 +25,17 @@ router.post('/', (req, res) => {
         parser.addImage(file.buffer);
     }
 
-    // Don't `await` the parsing to finish the login request before parsing is
-    // complete.
-    parser.parse().then(userProfile => {
-        console.log(`[login] user profile for ${userToken.id} complete`);
+    const userProfile = await parser.parse();
+    console.log(`[login] user profile for ${userToken.id} complete`);
 
-        const enoughPreferences = !Object.keys(userProfile.scores)
-            .map(key => userProfile.scores[key])
-            .every(score => score === 0);
+    DataStore.setUserProfile(userToken, userProfile);
 
-        DataStore.setUserProfile(userToken, userProfile);
+    const matcher = new Matcher(userToken);
+    const cityProfile = matcher.match();
 
-        const matcher = new Matcher(userToken);
-        const cityProfile = matcher.match();
-
-        DataStore.getConversation(userToken)
-            .setContext('crawled', true)
-            .setContext('enough_preferences', enoughPreferences)
-            .setCityProfile(cityProfile);
-    });
+    DataStore.getConversation(userToken)
+        .setContext('crawled', true)
+        .setCityProfile(cityProfile);
 
     // Return the JWT to the user
     res.end(userToken.getToken());
