@@ -68,10 +68,10 @@ export class UserParser {
 
     private async parseImage(image: Buffer): Promise<void> {
         const result = await UserParser.VR.classify(image);
-        if (!result.classes)
+        if (!result.images[0].classifiers[0].classes)
             throw new Error('[VR] The classes feature should be enabled.');
 
-        for (let resultClass of result.classes) {
+        for (let resultClass of result.images[0].classifiers[0].classes) {
             if (!resultClass.score) continue;
 
             const interests = categoryMap[resultClass.class_name];

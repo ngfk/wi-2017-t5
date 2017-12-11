@@ -21,7 +21,7 @@ export class VisualRecognition {
         VisualRecognition.CUSTOM_CLASSIFIER_ID = config.custom_classifier_id;
     }
 
-    public classify(file: Buffer): Promise<ClassifierResult> {
+    public classify(file: Buffer): Promise<any> {
         return this.request({
             images_file: file,
             parameters: {
