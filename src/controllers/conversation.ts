@@ -16,8 +16,14 @@ router.post('/message', async (req, res) => {
         const { text } = req.body;
         const response = await conversation.message(text);
 
+        // Collect metadata
+        const profile = DataStore.getUserProfile(userToken);
+
         // Return response
-        res.json({ text: response });
+        res.json({
+            profile,
+            text: response
+        });
     } catch (e) {
         console.log(e.message);
         res.end();
